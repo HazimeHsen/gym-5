@@ -1,6 +1,8 @@
 "use client";
-// Import necessary modules
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
+
 import Icon from "../../Buttons/Icon";
 import Button from "../../Buttons/Button";
 import Link from "next/link";
@@ -9,6 +11,15 @@ import { FaBars } from "react-icons/fa";
 import Image from "next/image";
 
 const Navbar = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Only trigger the animation once
+    threshold: 0.2, // Percentage of the element in view
+  });
+
+  useEffect(() => {
+    controls.start("visible");
+  }, [controls]);
   // Mobile Menu State
   const [mobileMenu, setMobileMenu] = useState(false);
   // Menus List as an array of objects
@@ -25,15 +36,32 @@ const Navbar = () => {
     <div className="bg-[#00000080] py-4 fixed top-0 z-50 w-full">
       {/* Mobile Menu */}
       <div className="flex items-center justify-between mx-2 sm:mx-6 md:mx-10  lg:hidden ">
-        <Link href="/">
+        <motion.a
+          ref={ref}
+          initial="hidden"
+          animate={controls}
+          variants={{
+            visible: { opacity: 1, x: 0 },
+            hidden: { opacity: 0, x: -50 },
+          }}
+          transition={{ duration: 0.3, delay: 1.2 }}
+          href="/">
           <Image
             width={160}
             height={70}
             src="/assets/logo/logo.png"
             alt="Fitness one Logo"
           />
-        </Link>
-        <div className="mx-4">
+        </motion.a>
+        <motion.div
+          initial="hidden"
+          animate={controls}
+          variants={{
+            visible: { opacity: 1, x: 0 },
+            hidden: { opacity: 0, x: 50 },
+          }}
+          transition={{ duration: 0.3, delay: 1.2 }}
+          className="mx-4">
           {mobileMenu ? (
             <button onClick={() => setMobileMenu(false)}>
               <FaXmark color="#fff" size={30} />
@@ -43,7 +71,7 @@ const Navbar = () => {
               <FaBars color="#fff" size={30} />
             </button>
           )}
-        </div>
+        </motion.div>
         {mobileMenu && (
           <ul className="absolute bg-white w-[90%] top-20 -left-[20px] px-2 mx-10 pb-4">
             {menus.map((menuItem, index) => (

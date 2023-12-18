@@ -1,21 +1,43 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaGlobe } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 
 const Footer = () => {
   // styles
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Only trigger the animation once
+    threshold: 0.2, // Percentage of the element in view
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
   const footerHead = "text-[18px] font-semibold my-[18px] text-white";
   const footerList = "font-[16px] text-gray my-4";
   return (
     <div
       className="bg-fixed bg-cover bg-center  flex items-center pt-20 lg:px-20"
       style={{ backgroundImage: `url(/assets/footer/footer.png)` }}>
-      <div>
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={{
+          visible: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: 50 },
+        }}
+        transition={{ duration: 0.3 }}>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          <div className="mx-4 my-10">
+          <div className="mx-4 my-2">
             <h2 className={footerHead}>COMPANY</h2>
-            <ul className="mt-10">
+            <ul className="">
               <li className={footerList}>
                 <Link href="/about">About Us</Link>
               </li>
@@ -30,23 +52,23 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="mx-4 my-10">
+          <div className="mx-4 my-2">
             <h2 className={footerHead}>OPEN HOUR</h2>
-            <ul className="mt-10">
+            <ul className="">
               <li className={footerList}>Monda-Thursday (11am-7pm)</li>
               <li className={footerList}>Sunday (close)</li>
               <li className={footerList}>Saturday (11am-7pm)</li>
             </ul>
           </div>
-          <div className="mx-4 my-10">
+          <div className="mx-4 my-2">
             <h2 className={footerHead}>Resources</h2>
-            <ul className="mt-10">
+            <ul className="">
               <li className={footerList}>Protien Insurance</li>
               <li className={footerList}>Trainners</li>
               <li className={footerList}>Car</li>
             </ul>
           </div>
-          <div className="mx-4 my-10">
+          <div className="mx-4 my-2">
             <img src="/assets/logo/logo2_footer.png" alt="" />
             <p className="font-[14px] text-gray my-10">
               {" "}
@@ -86,7 +108,7 @@ const Footer = () => {
             Copyright &copy; All rights reserved by fitness one
           </p>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

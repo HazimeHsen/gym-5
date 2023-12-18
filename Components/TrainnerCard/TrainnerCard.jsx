@@ -1,10 +1,32 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
 import { FaFacebookF, FaInstagram, FaGlobe } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const TrainnerCard = ({ name, title, image }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Only trigger the animation once
+    threshold: 0.2, // Percentage of the element in view
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
   return (
-    <div
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 50 },
+      }}
+      transition={{ duration: 0.3 }}
       className="relative team overflow-hidden group transition duration-500 mx-auto my-10"
       style={{ backgroundImage: `url(${image})` }}>
       <img src={image} alt="" className="mx-auto" />
@@ -29,7 +51,7 @@ const TrainnerCard = ({ name, title, image }) => {
           </a>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

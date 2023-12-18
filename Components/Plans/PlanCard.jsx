@@ -1,8 +1,32 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
 import { FaCheck } from "react-icons/fa";
 
 const PlanCard = ({ data }) => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: true, // Only trigger the animation once
+    threshold: 0.2, // Percentage of the element in view
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
   return (
-    <div className="border border-gray p-4 py-6 w-[300px] flex flex-col justify-between">
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      variants={{
+        visible: { opacity: 1, y: 0 },
+        hidden: { opacity: 0, y: 50 },
+      }}
+      transition={{ duration: 0.3 }}
+      className="border border-gray p-4 py-6 w-[300px] flex flex-col justify-between">
       <div>
         <div className="flex justify-between">
           <div>
@@ -28,7 +52,7 @@ const PlanCard = ({ data }) => {
           </ul>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
