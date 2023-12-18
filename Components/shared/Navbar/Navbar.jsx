@@ -90,16 +90,33 @@ const Navbar = () => {
       <div className="hidden lg:block">
         <div className="flex items-center justify-between lg:mx-10 xl:mx-20">
           <div>
-            <Link href="/">
+            <motion.a
+              ref={ref}
+              initial="hidden"
+              animate={controls}
+              variants={{
+                visible: { opacity: 1, x: 0 },
+                hidden: { opacity: 0, x: -50 },
+              }}
+              transition={{ duration: 0.5 }}
+              href="/">
               <Image
                 width={170}
                 height={70}
                 src="/assets/logo/logo.png"
                 alt="Fitness one Logo"
               />
-            </Link>
+            </motion.a>
           </div>
-          <div className="flex items-center">
+          <motion.div
+            initial="hidden"
+            animate={controls}
+            variants={{
+              visible: { opacity: 1, y: 0 },
+              hidden: { opacity: 0, y: -50 },
+            }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center">
             {/* Menus */}
             <ul className="flex">
               {menus.map((menuItem, index) => (
@@ -111,7 +128,7 @@ const Navbar = () => {
                 </a>
               ))}
             </ul>
-          </div>
+          </motion.div>
         </div>
       </div>
       {/* Desktop Menu */}
