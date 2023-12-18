@@ -1,3 +1,5 @@
+import { FaCheck } from "react-icons/fa";
+
 const PlanCard = ({ data }) => {
   return (
     <div className="border border-gray p-4 py-6 w-[300px] flex flex-col justify-between">
@@ -17,9 +19,9 @@ const PlanCard = ({ data }) => {
           <h2>Features:</h2>
           <ul>
             {data?.plans.map((plan, index) => (
-              <li className="my-2" key={index}>
+              <li className="my-2 flex gap-2" key={index}>
                 {" "}
-                <i className="fa-solid fa-check mx-2 text-lightGreen"></i>{" "}
+                <FaCheck size={20} className="mt-1 text-orange" />
                 <span>{plan.title}</span>
               </li>
             ))}
