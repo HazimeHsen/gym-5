@@ -2,15 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
+import Image from "next/image";
 
-const ServiceCard = ({
-  icon: IconComponent,
-  title,
-  description,
-  path,
-  content,
-  status,
-}) => {
+const ServiceCard = ({ icon, title, description, path, content, status }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: true, // Only trigger the animation once
@@ -32,9 +26,15 @@ const ServiceCard = ({
         hidden: { opacity: 0, y: 50 },
       }}
       transition={{ duration: 0.3 }}
-      className="bg-sky text-center p-5 relative max-w-sm mx-3 ">
+      className="bg-gray rounded-2xl text-center p-5 relative max-w-sm mx-3 ">
       <div className={`felx justify-center mx-auto w-full text-gray my-4 `}>
-        <IconComponent className="mx-auto text-orange" size={30} />
+        <Image
+          src={icon}
+          alt={title}
+          width={50}
+          height={50}
+          className="mx-auto "
+        />
       </div>
       <div className="my-6">
         <div className="uppercase text-large font-semibold ">{title}</div>

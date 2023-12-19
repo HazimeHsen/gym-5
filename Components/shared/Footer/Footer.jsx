@@ -19,12 +19,13 @@ const Footer = () => {
       controls.start("visible");
     }
   }, [controls, inView]);
-  const footerHead = "text-[18px] font-semibold my-[18px] text-white";
-  const footerList = "font-[16px] text-gray my-4";
+  const footerHead = "text-[18px] font-semibold my-[18px]";
+  const footerList = "font-[16px] text-black my-4";
   return (
     <div
       className="bg-fixed bg-cover bg-center  flex items-center pt-20 lg:px-20"
-      style={{ backgroundImage: `url(/assets/footer/footer.png)` }}>
+      // style={{ backgroundImage: `url(/assets/footer/footer.png)` }}
+    >
       <motion.div
         ref={ref}
         initial="hidden"
@@ -70,7 +71,7 @@ const Footer = () => {
           </div>
           <div className="mx-4 my-2">
             <img src="/assets/logo/logo2_footer.png" alt="" />
-            <p className="font-[14px] text-gray my-10">
+            <p className="font-[14px] text-black my-10">
               {" "}
               GThe trade war currently ensuing between te US anfd several
               natxions around thdhe globe, most fiercely with.
@@ -80,31 +81,31 @@ const Footer = () => {
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noreferrer">
-                <FaFacebookF className="text-gray text-[1.3rem] hover:text-main" />
+                <FaFacebookF className="text-black text-[1.3rem] hover:text-main" />
               </a>
               <a
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noreferrer">
-                <FaXTwitter className="text-gray text-[1.3rem] hover:text-main" />
+                <FaXTwitter className="text-black text-[1.3rem] hover:text-main" />
               </a>
               <a
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noreferrer">
-                <FaInstagram className="text-gray text-[1.3rem] hover:text-main" />
+                <FaInstagram className="text-black text-[1.3rem] hover:text-main" />
               </a>
               <a
                 href="https://www.facebook.com/"
                 target="_blank"
                 rel="noreferrer">
-                <FaGlobe className="text-gray text-[1.3rem] hover:text-main" />
+                <FaGlobe className="text-black text-[1.3rem] hover:text-main" />
               </a>
             </div>
           </div>
         </div>
-        <div className="my-10  border-t-2 border-gray">
-          <p className="text-gray text-center p-4">
+        <div className="my-10  border-t-2 border-gray md:mx-0 mx-4">
+          <p className="text-center p-4">
             Copyright &copy; All rights reserved by fitness one
           </p>
         </div>

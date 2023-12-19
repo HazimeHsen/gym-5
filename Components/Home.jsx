@@ -39,9 +39,10 @@ const Landing = () => {
     <div>
       {/* Hero Section */}
       <div
-        className="bg-fixed h-screen bg-cover bg-center md:bg-center pt-40 pb-6 md:pb-40 xl:h-screen md:flex items-center justify-between"
-        style={{ backgroundImage: `url(/assets/hero/h1_hero.png)` }}>
-        <div className="px-4 md:px-10 text-center flex flex-col items-center">
+        className="h-screen  flex items-center justify-between"
+        // style={{ backgroundImage: `url(/assets/hero/h1_hero.png)` }}
+      >
+        <div className="px-4 md:px-10 flex items-center w-screen justify-center md:mx-7 mx-4 mt-[65px] h-[80%] bg-[#59575799] rounded-xl text-center flex-col md:text-start ">
           {/* <motion.div ref={ref} className="flex items-center">
             <motion.div
               initial="hidden"
@@ -64,34 +65,54 @@ const Landing = () => {
               With Patric Potter{" "}
             </motion.p>
           </motion.div>{" "} */}
-          <motion.h2
-            ref={ref}
-            initial="hidden"
-            animate={controls}
-            variants={{
-              visible: { opacity: 1, y: 0 },
-              hidden: { opacity: 0, y: 50 },
-            }}
-            transition={{ duration: 0.3 }}
-            className="text-white text-extraLarge md:text-[50px] md:leading-none md:w-[80%] xl:w-[70%] font-bold uppercase py-16"
-            style={{ fontFamily: "'Teko', sans-serif" }}>
-            <TextGenerateEffect words="Build Perfect body Shape for good and Healthy life." />
-          </motion.h2>
-          <motion.div
-            ref={ref}
-            initial="hidden"
-            animate={controls}
-            variants={{
-              visible: { opacity: 1, y: 0 },
-              hidden: { opacity: 0, y: 50 },
-            }}
-            transition={{ duration: 0.3, delay: 1 }}>
-            <Button>
-              <Link href="/dashboard" className="md:px-2">
-                Become A Member
-              </Link>
-            </Button>
-          </motion.div>
+          <div className="flex md:flex-row flex-col items-center gap-4 md:justify-between lg:justify-evenly w-full">
+            <div className="flex md:block flex-col items-center xl:max-w-2xl max-w-lg w-full">
+              <motion.h2
+                ref={ref}
+                initial="hidden"
+                animate={controls}
+                variants={{
+                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 50 },
+                }}
+                transition={{ duration: 0.3 }}
+                className="text-white text-extraLarge md:text-[50px] md:leading-none md:w-[80%] xl:w-[70%] font-bold uppercase pb-5"
+                style={{ fontFamily: "'Teko', sans-serif" }}>
+                <TextGenerateEffect words="Build Perfect body Shape for good and Healthy life." />
+              </motion.h2>
+              <motion.div
+                ref={ref}
+                initial="hidden"
+                animate={controls}
+                variants={{
+                  visible: { opacity: 1, y: 0 },
+                  hidden: { opacity: 0, y: 50 },
+                }}
+                transition={{ duration: 0.3, delay: 1 }}>
+                <Button>
+                  <Link href="/dashboard" className="md:px-2">
+                    Become A Member
+                  </Link>
+                </Button>
+              </motion.div>
+            </div>
+            <motion.div
+              initial="hidden"
+              animate={controls}
+              variants={{
+                visible: { opacity: 1 },
+                hidden: { opacity: 0 },
+              }}
+              transition={{ duration: 0.3, delay: 1.4 }}>
+              <Image
+                alt="hero"
+                width={300}
+                height={300}
+                src="/hero.png"
+                className="lg:w-[300px] w-[200px] "
+              />
+            </motion.div>
+          </div>
         </div>
       </div>
       <About />
